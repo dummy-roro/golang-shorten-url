@@ -69,9 +69,11 @@ jobs:
           token: ${{ secrets.REPO_PAT }}
           path: mainfests
 
-      - name: Update Image Tag in Manifest
+      - name: Update deployment image in GitOps repo
         run: |
-          sed -i "s|image:.*|image: ghcr.io/${{ github.repository }}:${{ github.sha }}|" mainfests/deployment.yaml
+          FILE=$(find gitops -name deployment.yaml | head -n 1)
+          echo "Updating image in $FILE"
+          sed -i "s|image:.*|image: ghcr.io/dummy-roro/golang-shorten-url:${{ github.sha }}|" "$FILE"
 
       - name: Commit and Push Changes
         run: |
