@@ -9,7 +9,6 @@ A fast and minimal URL shortening service written in Go.
 - Clean URL structure
 - Lightweight Docker image
 - CI/CD and GitOps-ready
-
 ---
 
 ## 🛠️ Tech Stack
