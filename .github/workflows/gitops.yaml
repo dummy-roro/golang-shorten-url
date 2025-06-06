@@ -62,12 +62,12 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout GitOps Repo
+      - name: Checkout Manifest Repo
         uses: actions/checkout@v4
         with:
-          repository: your-org/your-gitops-repo
-          token: ${{ secrets.GITOPS_REPO_PAT }}
-          path: gitops
+          repository: dummy-roro/shorten-url-manifests
+          token: ${{ secrets.REPO_PAT }}
+          path: mainfests
 
       - name: Update Image Tag in Manifest
         run: |
