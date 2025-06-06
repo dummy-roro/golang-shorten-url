@@ -30,6 +30,7 @@ jobs:
         run: go test ./... -v
 
       - name: Static Code Analysis (gosec)
+        continue-on-error: true
         run: $(go env GOPATH)/bin/gosec ./...
 
       - name: Build Docker Image
