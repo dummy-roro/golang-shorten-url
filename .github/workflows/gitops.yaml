@@ -8,9 +8,7 @@ on:
 
 jobs:
   ci:
-    name: DevSecOps CI
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -20,20 +18,19 @@ jobs:
         with:
           go-version: '1.21'
 
-      - name: Install golangci-lint
+      - name: Install linters and security tools
         run: |
+          go install github.com/securego/gosec/v2/cmd/gosec@latest
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.57.1
 
       - name: Lint
-        run: golangci-lint run ./...
+        run: $(go env GOPATH)/bin/golangci-lint run ./...
 
       - name: Run Unit Tests
         run: go test ./... -v
 
       - name: Static Code Analysis (gosec)
-        uses: securego/gosec@v2
-        with:
-          args: ./...
+        run: $(go env GOPATH)/bin/gosec ./...
 
       - name: Build Docker Image
         run: |
