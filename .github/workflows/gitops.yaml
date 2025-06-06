@@ -68,17 +68,19 @@ jobs:
           repository: dummy-roro/shorten-url-manifests
           token: ${{ secrets.REPO_PAT }}
           path: mainfests
-
+    
       - name: Update deployment image in GitOps repo
         run: |
-          FILE=$(find gitops -name deployment.yaml | head -n 1)
+          FILE=$(find mainfests -name deployment.yaml | head -n 1)
           echo "Updating image in $FILE"
           sed -i "s|image:.*|image: ghcr.io/dummy-roro/golang-shorten-url:${{ github.sha }}|" "$FILE"
-
+          
       - name: Commit and Push Changes
         run: |
-          cd gitops
-          git config user.name "GitHub Actions"
+          cd mainfests
+          git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git commit -am "Update image to ${{ github.sha }}"
+          git add .
+          git commit -m "Update image to ${{ github.sha }}"
           git push
+
