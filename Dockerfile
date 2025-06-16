@@ -50,11 +50,5 @@ COPY --from=build --chown=appuser:appuser /app/static /app/static
 # Expose the port your application listens on
 EXPOSE 8080
 
-# Add labels for better image metadata
-LABEL maintainer="your_email@example.com" \
-      version="1.0.0" \
-      description="Go application optimized with Docker best practices" \
-      org.opencontainers.image.source="https://github.com/your-org/your-repo" # Replace with your actual repo
-
 # Define the command to run your application when the container starts
 CMD ["/app/main"]
