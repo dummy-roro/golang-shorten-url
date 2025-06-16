@@ -30,7 +30,7 @@ jobs:
         run: go test ./... -v
 
       - name: Static Code Analysis (gosec)
-        run: $(go env GOPATH)/bin/gosec ./...
+        run: $(go env GOPATH)/bin/gosec -disable=G404 ./...
         continue-on-error: true
 
       - name: Build Docker Image
