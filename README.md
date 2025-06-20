@@ -1,6 +1,6 @@
-# 🔗 Go URL Shortener
+# 🔗 GoLang URL Shortener 
 
-A fast and minimal URL shortening service written in Go.
+A fast and minimal URL shortening service written in Go. Integrated with github actions devsecops pipeline and deployed to EC2 server and kubernetes using ArgoCD and GitOps approach.
 
 ## 🚀 Features
 
